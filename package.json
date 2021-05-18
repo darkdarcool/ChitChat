@@ -1,0 +1,25 @@
+{
+  "name": "chitchat",
+  "version": "0.0.1",
+  "description": "Jest clone in JS with more strict types",
+  "main": "index.js",
+  "scripts": {
+    "test": "node tests/testcase.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/darkdarcool/ChitChat.git"
+  },
+  "keywords": [
+    "ChitChat"
+  ],
+  "author": "darkdarcool30",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/darkdarcool/ChitChat/issues"
+  },
+  "homepage": "https://github.com/darkdarcool/ChitChat#readme",
+  "dependencies": {
+    "colors": "^1.4.0"
+  }
+}
