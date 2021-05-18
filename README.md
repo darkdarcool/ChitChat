@@ -49,7 +49,7 @@ Now, lets create a folder called tests, and add a file called mytest.js in it. I
 ``` javascript
 var test = require('chitchatsjs')
 var func = require('../add.js')
-test.TestCase('First Test', add(1, 5), () => {
+test.TestCase('First Test', func.add(1, 5), () => {
   return test.expectToBeNum(6)
 });
 ```
