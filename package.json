@@ -1,5 +1,5 @@
 {
-  "name": "chitchat",
+  "name": "chitchatsjs",
   "version": "0.0.1",
   "description": "Jest clone in JS with more strict types",
   "main": "index.js",
