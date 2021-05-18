@@ -1,68 +1,64 @@
 var colors = require('colors');
+var ff = require('./errors/NumFail.js')
+var aa = require("./passes/NumPass.js")
+var ll = require('./passes/TextPass.js')
+var gg = require('./errors/TextFail.js')
 colors.setTheme({
   passed: 'green',
   error: 'red'
 });
 var bold = '\033[1m'
-class TestCase {
-  constructor(testname, func) {
-    this.testName = testname;
-    if (this.testName == undefined || null) {
-      console.log(bold + "TestCase was not found".error)
-      this.e = true
-    }
-    this.func = func;
-    if (this.func == undefined || null) {
-      console.log(bold + "TestCase Function not found".error)
-      this.e = true
-    }
+var result;
+var testName;
+function expectToBeNum(value) {
+  if (value == result) {
+    aa.numPassed(testName); // result passed function goes here
   }
-  toBeEqualToNum = (value) => {
-    if (this.e == true) {
-      // this means they didn't define one of the variables and we want nothing to do with them
-    }
-    else if (typeof this.func != "number") {
-      console.log(bold + "Value of the variale we are trying to match is not a number. We got the value of ".error + this.func + " returned".error)
-    }
-    else if (value == undefined) {
-      console.log(bold + "Value was expected but got none".error);
-    }
-    else if (typeof value === "number") {
-      if (this.func == value) {
-        console.log(bold + `${this.testName} passed!`.passed);
-      }
-      else {
-        console.log(bold + `${this.testName} failed!`.error);
-      }
+  else {
+    ff.numFailed(testName, result, value);
+  }
+}
+function expectToBeText(value) {
+  if (typeof value === 'string') {
+    if (value == result) {
+      ll.textPassed(testName);
     }
     else {
-      console.log(bold + "Type of the value expected in not a num. We got the value: ".error + value.error);
+      gg.textFailed(testName, result, value)
     }
   }
-  toBeEqualToText = (value) => {
-    if (this.e == true) {
-      // this means they didn't define one of the variables and we want nothing to do with them
-    }
-    else if (typeof this.func != "string") {
-      console.log(bold + "Value of the variale we are trying to match is not text. We got the value of ".error + this.func + " returned".error);
-    }
-    else if (value == undefined) {
-      console.log(bold + "Value was expected but got none".error);
-    }
-    else if (typeof value === "string") {
-      if (value == this.func) {
-        console.log(bold + `${this.testName} passed!`.passed);
-      }
-      else {
-        console.log(bold + `${this.testName} failed!`.error);
-      }
-    }
-    else {
-      console.log(bold + "Type of the value expected in not a string. We got the value: ".error + value.error);
-    }
+  else {
+    console.log(bold + 'Value expected is not a string.'.error)
   }
-  
+}
+function TestCase(testname, func, data) {
+  if (testname == null || undefined) {
+    console.log("Testname not found");
+    return 0;
+  }
+  if (func == null || undefined) {
+    console.log("Function or return value not found");
+    return 0;
+  }
+  if (data == undefined || null) {
+    console.log("Data for expection not found");
+    return 0;
+  }
+  result = func;
+  testName = testname;
+  if (typeof result === 'number') {
+    return data(result, {
+      expectToBeNum
+    });
+  }
+  else if (typeof result === 'string') {
+    return data(result, {
+      expectToBeText
+    });
+  }
 }
 module.exports = {
-  TestCase
+  TestCase,
+  expectToBeNum,
+  expectToBeText
 }

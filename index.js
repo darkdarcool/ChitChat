@@ -1,2 +1,6 @@
 var e = require("./src/index.js");
-exports.TestCase = e.TestCase
+module.exports = {
+  TestCase : e.TestCase,
+  expectToBeNum : e.expectToBeNum,
+  expectToBeText : e.expectToBeText
+}

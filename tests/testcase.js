@@ -1,6 +1,7 @@
-e = require("../index.js")
-function l() {
-  return 'e'
-} 
-f = new e.TestCase("f2", l())
-f.toBeEqualToText(98)
+const test = require("../index.js");
+function add(num1, num2) {
+  return num1 + num2;
+}
+test.TestCase('First Test', add(1, 5), () => {
+  return test.expectToBeNum(6)
+});
