@@ -87,6 +87,6 @@ But if you have your heart set on contributing, you can leave suggestions in thi
 
 # Conclusion
 
-Thanks for reading this. If you wanna use this, go ahead. This does not replace `jest`. I worked hard on this and hop you try it out. 
+Thanks for reading this. If you wanna use this, go ahead. This does not replace `jest`. I worked hard on this and hope you try it out. 
 
 ## KTHXBAI!!
