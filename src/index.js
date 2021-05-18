@@ -19,7 +19,7 @@ class TestCase {
   }
   toBeEqualToNum = (value) => {
     if (this.e == true) {
-      
+      // this means they didn't define one of the variables and we want nothing to do with them
     }
     else if (typeof this.func != "number") {
       console.log(bold + "Value of the variale we are trying to match is not a number. We got the value of ".error + this.func + " returned".error)
@@ -37,6 +37,28 @@ class TestCase {
     }
     else {
       console.log(bold + "Type of the value expected in not a num. We got the value: ".error + value.error);
+    }
+  }
+  toBeEqualToText = (value) => {
+    if (this.e == true) {
+      // this means they didn't define one of the variables and we want nothing to do with them
+    }
+    else if (typeof this.func != "string") {
+      console.log(bold + "Value of the variale we are trying to match is not text. We got the value of ".error + this.func + " returned".error);
+    }
+    else if (value == undefined) {
+      console.log(bold + "Value was expected but got none".error);
+    }
+    else if (typeof value === "string") {
+      if (value == this.func) {
+        console.log(bold + `${this.testName} passed!`.passed);
+      }
+      else {
+        console.log(bold + `${this.testName} failed!`.error);
+      }
+    }
+    else {
+      console.log(bold + "Type of the value expected in not a string. We got the value: ".error + value.error);
     }
   }
   
