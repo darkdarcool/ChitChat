@@ -81,9 +81,9 @@ But if you have your heart set on contributing, you can leave suggestions in thi
 
 # Credits
 
-**My Brain**, for punching me in the stomach until I did this
-**@darkdarcool(myself)**, for doing this
-**@RayhanADev**, for helping me with the function in the TestCase function 
+* **My Brain**, for punching me in the stomach until I did this
+* **@darkdarcool(myself)**, for doing this
+* **@RayhanADev**, for helping me with the function in the TestCase function 
 
 # Conclusion
 
