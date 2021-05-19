@@ -1,2 +1,2 @@
 language = "node"
-run = "npm run test"
+run = "bash main.sh"
