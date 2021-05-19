@@ -11,38 +11,56 @@ var bold = '\033[1m'
 var result;
 var testName;
 function expectToBeNum(value) {
+  if (value == undefined) {
+    console.log(bold + "Value must be defined to expect".error);
+    return;
+  }
+  if (result == undefined || null) {
+    console.log(bold + "Variable must be used in return statment in TestCase".error)
+    return;
+  }
   if (value == result) {
-    aa.numPassed(testName); // result passed function goes here
+    aa.numPassed(testName);
+    return true
   }
   else {
     ff.numFailed(testName, result, value);
+    return false;
   }
 }
 function expectToBeText(value) {
+  if (value == undefined) {
+    console.log("Value must be defined to expect");
+  }
+  if (result == null) {
+    console.log("Variable must be used in TestCase")
+  }
   if (typeof value === 'string') {
     if (value == result) {
       ll.textPassed(testName);
+      result = null;
     }
     else {
-      gg.textFailed(testName, result, value)
+      result = null;
+      gg.textFailed(testName, result, value);
     }
   }
   else {
-    console.log(bold + 'Value expected is not a string.'.error)
+    console.log(bold + 'Value expected is not a string.'.error);
   }
 }
 function TestCase(testname, func, data) {
   if (testname == null || undefined) {
     console.log("Testname not found");
-    return 0;
+    return;
   }
   if (func == null || undefined) {
     console.log("Function or return value not found");
-    return 0;
+    return;
   }
   if (data == undefined || null) {
     console.log("Data for expection not found");
-    return 0;
+    return;
   }
   result = func;
   testName = testname;
