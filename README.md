@@ -98,7 +98,7 @@ So, the number we expected was 5, which you can see in our code on line 6 of our
 This is when chitchat will throw an error that will end your tests because of an error that would cause more errors that would be hard to fix. These error include
 
 - Incorrect types to expection, like: `expectToBeNum('Hello')`
-- Feilds in TestCase and expection not filled out.
+- Fields in TestCase and expection not filled out.
 # Contributing!
 
 I won't except contributers, cause this is me learning js, but if I know you, and want you on the project, maybe you'll be invited! 
