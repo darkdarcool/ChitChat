@@ -3,6 +3,8 @@ var ff = require('./errors/NumFail.js');
 var aa = require("./passes/NumPass.js");
 var ll = require('./passes/TextPass.js');
 var gg = require('./errors/TextFail.js');
+var jj = require('./passes/BoolPass.js');
+var dd = require('./errors/BoolFail.js')
 colors.setTheme({
   passed: 'green',
   error: 'red'
@@ -11,6 +13,10 @@ var bold = '\033[1m';
 var result;
 var testName;
 function expectToBeNum(value) {
+  if (typeof value !== 'number') {
+    let err = bold + 'Type given to number function in '.error + testName + " is not a number.".error
+    throw new Error(err)
+  }
   if (value == undefined) {
     let err = bold + "Value must be defined to expect".error
     throw new Error(err);
@@ -33,6 +39,10 @@ function expectToBeNum(value) {
   }
 }
 function expectToBeText(value) {
+  if (typeof value !== 'string') {
+    let err = bold + 'Type given to number function in '.error + testName + " is not text.".error
+    throw new Error(err)
+  }
   if (value == undefined) {
     let err = bold + "Value must be defined to expect".error;
     throw new Error(err);
@@ -53,6 +63,32 @@ function expectToBeText(value) {
   }
   else {
     console.log(bold + 'Value expected is not a string.'.error);
+  }
+}
+function expectToBeBool(value) {
+  if (typeof value !== 'boolean') {
+    let err = bold + 'Type given to number function in '.error + testName + " is not boolean.".error
+    throw new Error(err)
+  }
+  if (value == undefined) {
+    let err = bold + "Value must be defined to expect".error
+    throw new Error(err);
+    return;
+  }
+  if (result == undefined || null) {
+    let err = bold + "Variable must be used in return statment in TestCase".error;
+    throw new Error(err);
+    return;
+  }
+  if (value == result) {
+    jj.boolPassed(testName);
+    result = null;
+    return true;
+  }
+  else {
+    dd.boolFailed(testName, result, value);
+    result = null;
+    return false;
   }
 }
 function TestCase(testname, func, data) {
@@ -83,9 +119,15 @@ function TestCase(testname, func, data) {
       expectToBeText
     });
   }
+  else if (typeof result === 'boolean') {
+    return data(result, {
+      expectToBeBool
+    });
+  }
 }
 module.exports = {
   TestCase,
   expectToBeNum,
-  expectToBeText
+  expectToBeText,
+  expectToBeBool
 }

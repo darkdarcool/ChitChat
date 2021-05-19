@@ -6,9 +6,9 @@ colors.setTheme({
 });
 var bold = '\033[1m';
 var grey = '\33[90m';
-function textPassed(testName) {
+function boolPassed(testName) {
   console.log(bold + `✅  ${testName} Passed!`.passed);
 }
 module.exports = {
-  textPassed
+  boolPassed
 }

@@ -6,13 +6,13 @@ colors.setTheme({
 });
 var bold = '\033[1m';
 var grey = '\33[90m';
-function textFailed(testName, value, expected) {
+function boolFailed(testName, value, expected) {
   let type = typeof value;
   if (type == 'boolean') {
     type = 'bool';
   }
-  console.log(bold + `❌  ${testName} failed.\nExpected string:\n   ` .error + grey + expected + "\nbut received " + type.error + ":\n   ".error + grey + value);
+  console.log(bold + `❌  ${testName} failed.\nExpected bool:\n   ` .error + grey + expected + "\nbut received ".error + type.error + ":\n   ".error + grey + value);
 }
 module.exports = {
-  textFailed
+  boolFailed
 }

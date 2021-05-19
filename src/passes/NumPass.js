@@ -6,8 +6,8 @@ colors.setTheme({
 });
 var bold = '\033[1m';
 var grey = '\33[90m';
-function numPassed(testName, value, expected) {
-  console.log(bold + `✅\n${testName} Passed!`.passed);
+function numPassed(testName) {
+  console.log(bold + `✅  ${testName} Passed!`.passed);
 }
 module.exports = {
   numPassed

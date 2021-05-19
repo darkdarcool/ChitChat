@@ -7,7 +7,11 @@ colors.setTheme({
 var bold = '\033[1m';
 var grey = '\33[90m';
 function numFailed(testName, value, expected) {
-  console.log(bold + `❌\n${testName} failed.\nExpected number:\n   ` .error + grey + expected + "\nbut received number:\n   ".error + grey + value);
+  let type = typeof value;
+  if (type == 'boolean') {
+    type = 'bool';
+  }
+  console.log(bold + `❌  ${testName} failed.\nExpected number:\n   ` .error + grey + expected + "\nbut received ".error + type.error + ":\n   ".error + grey + value);
 }
 module.exports = {
   numFailed
