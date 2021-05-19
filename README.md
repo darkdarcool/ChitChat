@@ -8,7 +8,7 @@ Hi! Welcome to ChitChat! Or more professionally known as `ChitChatsjs` as the np
 
 You can install ChitChat easily! Here is how:
 
-``` bach
+``` bash
 npm i chitchatsjs
 ```
 
@@ -66,15 +66,42 @@ That's it for this tutorial! While our little function is tiny and simple, yours
 
 We have more things coming soon! Like:
 ```
-expectToBeFalse()
-expectToBeTrue()
 expectToThrowError()
-expectToBeAny(what-you-are-expecting)
 ```
 
+# Wrong Expection & Errors
+
+Of course, when you are expecting return values, your going to get one wrong eventually, lets use this example wrong expection:
+
+``` javascript
+var test = require("chitchatsjs")
+function add(num1, num2) {
+  return num1 + num2
+}
+test.TestCase("Example Test", add(2, 2), () => {
+  test.expectToBeNum(5)
+});
+```
+Of course, 4 is not 5, so our expection is wrong. But, what will it return? This is what it will return if you run it:
+```
+❌  Example Test failed.
+Expected number:
+   5
+but received number:
+   4
+```
+> There will be color in the terminal/console
+
+So, the number we expected was 5, which you can see in our code on line 6 of our example. But `add(2, 2)` would return the value of four, which is the number that the test case received from the function and would succeed if we expected it. There are also errors if you don't follow types correctly.
+
+## Errors
+This is when chitchat will throw an error that will end your tests because of an error that would cause more errors that would be hard to fix. These error include
+
+- Incorrect types to expection, like: `expectToBeNum('Hello')`
+- Feilds in TestCase and expection not filled out.
 # Contributing!
 
-I won't really except contributers, cause this is me learning js, but if I know you, and want you on the project, maybe you'll be invited! 
+I won't except contributers, cause this is me learning js, but if I know you, and want you on the project, maybe you'll be invited! 
 
 But if you have your heart set on contributing, you can leave suggestions in this github repo!
 
