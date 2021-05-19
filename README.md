@@ -50,15 +50,14 @@ Now, lets create a folder called tests, and add a file called mytest.js in it. I
 var test = require('chitchatsjs')
 var add = require('../add.js')
 test.TestCase('First Test', add(1, 5), () => {
-  return test.expectToBeNum(6)
+  test.expectToBeNum(6)
 });
 ```
 
 Then, run `npm run test`, and you should see a test prompt come up saying:
 
 ```
-✅
-First Test Passed!.
+✅  First Test Passed!
 ```
 
 That's it for this tutorial! While our little function is tiny and simple, yours can be super big and complex! If you have any problems, please contact us in out github repo or in a comment!
