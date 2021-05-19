@@ -1,39 +1,45 @@
 var colors = require('colors');
-var ff = require('./errors/NumFail.js')
-var aa = require("./passes/NumPass.js")
-var ll = require('./passes/TextPass.js')
-var gg = require('./errors/TextFail.js')
+var ff = require('./errors/NumFail.js');
+var aa = require("./passes/NumPass.js");
+var ll = require('./passes/TextPass.js');
+var gg = require('./errors/TextFail.js');
 colors.setTheme({
   passed: 'green',
   error: 'red'
 });
-var bold = '\033[1m'
+var bold = '\033[1m';
 var result;
 var testName;
 function expectToBeNum(value) {
   if (value == undefined) {
-    console.log(bold + "Value must be defined to expect".error);
+    let err = bold + "Value must be defined to expect".error
+    throw new Error(err);
     return;
   }
   if (result == undefined || null) {
-    console.log(bold + "Variable must be used in return statment in TestCase".error)
+    let err = bold + "Variable must be used in return statment in TestCase".error;
+    throw new Error(err);
     return;
   }
   if (value == result) {
     aa.numPassed(testName);
-    return true
+    result = null;
+    return true;
   }
   else {
     ff.numFailed(testName, result, value);
+    result = null;
     return false;
   }
 }
 function expectToBeText(value) {
   if (value == undefined) {
-    console.log("Value must be defined to expect");
+    let err = bold + "Value must be defined to expect".error;
+    throw new Error(err);
   }
   if (result == null) {
-    console.log("Variable must be used in TestCase")
+    let err = bold + "Variable must be used in TestCase".error;
+    throw new Error(err)
   }
   if (typeof value === 'string') {
     if (value == result) {
@@ -51,15 +57,18 @@ function expectToBeText(value) {
 }
 function TestCase(testname, func, data) {
   if (testname == null || undefined) {
-    console.log("Testname not found");
+    let err = bold + "Testname not found".error;
+    throw new Error(err);
     return;
   }
   if (func == null || undefined) {
-    console.log("Function or return value not found");
+    let err = bold + "Function or return value not found".error;
+    throw new Error(err);
     return;
   }
   if (data == undefined || null) {
-    console.log("Data for expection not found");
+    let err = bold + "Data for expection not found".error;
+    throw new Error(err);
     return;
   }
   result = func;
