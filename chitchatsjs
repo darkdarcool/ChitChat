@@ -1,0 +1,94 @@
+#!/usr/bin/env node
+var colors = require('colors');
+const { exec } = require("child_process");
+function sleep(milliseconds) {
+  const date = Date.now();
+  let currentDate = null;
+  do {
+    currentDate = Date.now();
+  } while (currentDate - date < milliseconds);
+};
+colors.setTheme({
+  passed: 'green',
+  error: 'red'
+});
+var bold = '\033[1m';
+let usrfile = process.argv[2]
+const fs = require("fs");
+if (usrfile == '--help') {
+  console.log('build: This will compile your file to ChitChatsjs to make it runable.')
+}
+if (usrfile == undefined) {
+  console.log(bold + "No arg was found. Please do chitchatsjs --help for more.".error)
+  process.exit(22)
+}
+
+if (process.argv[2] == 'build') {
+  try {
+    usrfile = process.argv[3]
+    if (usrfile.includes('.chit.js')) {
+      // user is aight
+    }
+    else {
+      console.log(bold + "File is not a chit test file, please do:\nmyfilename.chit.js".error)
+      process.exit(22)
+    }
+  }
+  catch {
+    console.log(bold + "File not found".error)
+    process.exit(22)
+  }
+  let file = fs.readFileSync(usrfile);
+  let oldFile = file
+  let lfile = "" + file
+  lfile = lfile.replace(/\.chit\./g, '')
+  let data = "" + lfile
+  data = data.replace("var chit = require('chitchatsjs')")
+  data = "var chit = require('chitchatsjs')\n" + lfile
+  data = data.replace(/\.chit/g, '')
+  data = data.replace(/TestCase/g, 'chit.TestCase')
+  data = data.replace(/expectToBeNum/g, 'chit.expectToBeNum')
+  data = data.replace(/expectToBeArr/g, 'chit.expectToBeArr')
+  data = data.replace(/expectToBeText/g, 'chit.expectToBeText')
+  data = data.replace(/expectToBeBool/g, 'chit.expectToBebool')
+  data = data.replace(/\chit\./g, 'chit.')
+  data = data.replace(/chit\.chit\./g, 'chit.')
+  data = data.replace(/chitchit\./g, 'chit.')
+  fs.writeFile(usrfile, data, (error) => { 
+    // In case of a error throw err exception. 
+    if (error) throw err; 
+	  	console.log("Compiled!")
+  });
+}
+
+else if (process.argv[2] == 'example') {
+  
+  exec("bash example.sh", (error, stdout, stderr) => {
+    if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+    }
+    if (stderr) {
+        console.log(`${stderr}`);
+        return;
+    }
+    console.log(`${stdout}`);
+  });
+  sleep(1500)
+  if (process.argv[3] != undefined) {
+    exec(`mv ChitChatsjsExample ${process.argv[3]}`, (error, stdout, stderr) => {
+      if (error) {
+        console.log(`error: ${error.message}`);
+        return;
+      }
+      if (stderr) {
+        console.log(`${stderr}`);
+        return;
+      }
+      console.log(`${stdout}`);
+    });
+  }
+}
+else {
+  console.log(bold + "Unknow command. Please do:\n--help\nfor a list of commands".error)
+}

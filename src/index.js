@@ -1,10 +1,13 @@
+#!/usr/bin/env node
 var colors = require('colors');
 var ff = require('./errors/NumFail.js');
 var aa = require("./passes/NumPass.js");
 var ll = require('./passes/TextPass.js');
 var gg = require('./errors/TextFail.js');
 var jj = require('./passes/BoolPass.js');
-var dd = require('./errors/BoolFail.js')
+var dd = require('./errors/BoolFail.js');
+var ww = require('./passes/ArrPass.js');
+var yy = require('./errors/ArrFail.js')
 colors.setTheme({
   passed: 'green',
   error: 'red'
@@ -12,6 +15,31 @@ colors.setTheme({
 var bold = '\033[1m';
 var result;
 var testName;
+function expectToBeArr(value) {
+  if (Array.isArray(value) == false) {
+    let err = bold + 'Type given to Array function in '.error + testName + " is not a Array.".error
+    throw new Error(err)
+  }
+  if (value == undefined) {
+    let err = bold + "Value must be defined to expect".error
+    throw new Error(err);
+  }
+  if (result == undefined || null) {
+    let err = bold + "Variable must be used in return statment in TestCase".error;
+    throw new Error(err);
+  }
+  value = JSON.stringify(value)
+  result = JSON.stringify(result)
+  if (value == result) {
+    ww.arrPassed(testName);
+    result = null
+    return true
+  }
+  else {
+    yy.arrFailed(testName, result, value);
+    return false
+  }
+}
 function expectToBeNum(value) {
   if (typeof value !== 'number') {
     let err = bold + 'Type given to number function in '.error + testName + " is not a number.".error
@@ -55,10 +83,13 @@ function expectToBeText(value) {
     if (value == result) {
       ll.textPassed(testName);
       result = null;
+      return true;
     }
     else {
       result = null;
       gg.textFailed(testName, result, value);
+      return false;
+
     }
   }
   else {
@@ -124,10 +155,16 @@ function TestCase(testname, func, data) {
       expectToBeBool
     });
   }
+  else if (Array.isArray(result) == true) {
+    return data(result, {
+      expectToBeArr
+    });
+  }
 }
 module.exports = {
   TestCase,
   expectToBeNum,
   expectToBeText,
-  expectToBeBool
+  expectToBeBool,
+  expectToBeArr
 }

@@ -50,7 +50,7 @@ Now, lets create a folder called tests, and add a file called mytest.js in it. I
 var test = require('chitchatsjs')
 var add = require('../add.js')
 test.TestCase('First Test', add(1, 5), () => {
-  test.expectToBeNum(6)
+  return test.expectToBeNum(6)
 });
 ```
 

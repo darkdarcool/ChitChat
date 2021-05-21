@@ -1,17 +1,18 @@
 {
   "name": "chitchatsjs",
-  "version": "0.0.3",
+  "version": "0.0.5",
   "description": "Jest clone in JS with more strict types",
   "main": "index.js",
+  "bin": "chitchatsjs",
   "scripts": {
-    "test": "node tests/testcase.js"
+    "test": "node tests/testcase.chit.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/darkdarcool/ChitChat.git"
   },
   "keywords": [
-    "ChitChat"
+    "chit"
   ],
   "author": "darkdarcool30",
   "license": "MIT",

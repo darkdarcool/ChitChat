@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var colors = require('colors');
 colors.setTheme({
   passed: 'green',
