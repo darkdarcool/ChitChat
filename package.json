@@ -1,6 +1,6 @@
 {
   "name": "chitchatsjs",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "Jest clone in JS with more strict types",
   "main": "index.js",
   "bin": "chitchatsjs",
