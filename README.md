@@ -40,21 +40,20 @@ After you've done that, in your package.json file lets add:
 
 ``` json
 "scripts": {
-  "test": "node tests/mytest.js"
+  "test": "./chitchatsjs build tests/mytest.js && node tests/mytest.js"
 },
 ```
 
 Now, lets create a folder called tests, and add a file called mytest.js in it. In it put the following code:
 
 ``` javascript
-var test = require('chitchatsjs')
 var add = require('../add.js')
-test.TestCase('First Test', add(1, 5), () => {
+TestCase('First Test', add(1, 5), () => {
   return test.expectToBeNum(6)
 });
 ```
 
-Then, run `npm run test`, and you should see a test prompt come up saying:
+Then, run `npm run test`, and you should see it build your file and a test prompt come up saying:
 
 ```
 ✅  First Test Passed!
@@ -74,11 +73,10 @@ expectToThrowError()
 Of course, when you are expecting return values, your going to get one wrong eventually, lets use this example wrong expection:
 
 ``` javascript
-var test = require("chitchatsjs")
 function add(num1, num2) {
   return num1 + num2
 }
-test.TestCase("Example Test", add(2, 2), () => {
+TestCase("Example Test", add(2, 2), () => {
   test.expectToBeNum(5)
 });
 ```
@@ -108,11 +106,13 @@ But if you have your heart set on contributing, you can leave suggestions in thi
 # Credits
 
 * **My Brain**, for punching me in the stomach until I did this
-* **@darkdarcool(myself)**, for doing this
-* **@RayhanADev**, for helping me with the function in the TestCase function 
+* [**@darkdarcool(myself)**](https://github.com/darkdarcool), for doing this
+* [**@RayhanADev**](https://github.com/RayhanADev), for helping me with the function in the TestCase function 
 
 # Conclusion
 
 Thanks for reading this. If you wanna use this, go ahead. This does not replace `jest`. I worked hard on this and hope you try it out. 
 
 ## KTHXBAI!!
+
+> ###### Pssst, if you wanna look at the source code, go [here](https://github.com/darkdarcool/chitchatjs)
