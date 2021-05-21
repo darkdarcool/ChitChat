@@ -14,6 +14,12 @@ function numFailed(testName, value, expected) {
   if (type == 'boolean') {
     type = 'bool';
   }
+  else if (type == 'object') {
+    type = 'obj'
+  }
+  if (value == expected) {
+    console.log()
+  }
   console.log(bold + `❌  ${testName} failed.\nExpected number:\n   ` .error + grey + expected + "\nbut received ".error + type.error + ":\n   ".error + grey + value + end);
 }
 module.exports = {

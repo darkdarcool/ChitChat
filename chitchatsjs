@@ -30,8 +30,7 @@ if (process.argv[2] == 'build') {
       // user is aight
     }
     else {
-      console.log(bold + "File is not a chit test file, please do:\nmyfilename.chit.js".error)
-      process.exit(22)
+      console.log(bold + "File is not a chit test file, please do proper chit and do:\nmyfilename.chit.js".error)
     }
   }
   catch {
@@ -63,7 +62,7 @@ if (process.argv[2] == 'build') {
 
 else if (process.argv[2] == 'example') {
   
-  exec("bash example.sh", (error, stdout, stderr) => {
+  exec("git clone https://github.com/darkdarcool/ChitChatsjsExample", (error, stdout, stderr) => {
     if (error) {
         console.log(`error: ${error.message}`);
         return;
@@ -74,7 +73,7 @@ else if (process.argv[2] == 'example') {
     }
     console.log(`${stdout}`);
   });
-  sleep(1500)
+  sleep(3000)
   if (process.argv[3] != undefined) {
     exec(`mv ChitChatsjsExample ${process.argv[3]}`, (error, stdout, stderr) => {
       if (error) {

@@ -7,7 +7,9 @@ var gg = require('./errors/TextFail.js');
 var jj = require('./passes/BoolPass.js');
 var dd = require('./errors/BoolFail.js');
 var ww = require('./passes/ArrPass.js');
-var yy = require('./errors/ArrFail.js')
+var yy = require('./errors/ArrFail.js');
+var xx = require('./errors/ObjFail.js')
+var zz = require('./errors/ErrFailed.js')
 colors.setTheme({
   passed: 'green',
   error: 'red'
@@ -15,6 +17,44 @@ colors.setTheme({
 var bold = '\033[1m';
 var result;
 var testName;
+function expectToBeErr() {
+
+  if (result instanceof Error === true) {
+    ww.arrPassed(testName);
+
+  }
+  else {
+    zz.errFailed(testName, result);
+  }
+
+}
+function expectToBeObj(value) {
+  if (typeof value !== number) {
+    let err = bold + 'Type given to Obj function in '.error + testName + " is not a Obj.".error
+    throw new Error(err)
+  }
+  if (Array.isArray(value) == true) {
+    console.log("Please use array function for array")
+    return;
+  }
+  if (value == undefined) {
+    let err = bold + "Value must be defined to expect".error
+    throw new Error(err);
+  }
+  if (result == undefined || null) {
+    let err = bold + "Variable must be used in return statment in TestCase".error;
+    throw new Error(err);
+  }
+  if (value == result) {
+    ww.arrPassed(testName);
+    result = null
+    return true
+  }
+  else {
+    xx.objFailed(testName, result, value);
+    return false
+  }
+}
 function expectToBeArr(value) {
   if (Array.isArray(value) == false) {
     let err = bold + 'Type given to Array function in '.error + testName + " is not a Array.".error
@@ -140,6 +180,11 @@ function TestCase(testname, func, data) {
   }
   result = func;
   testName = testname;
+  if (result instanceof Error || RangeError === true) {
+    return data(result, {
+      expectToBeErr
+    });
+  }
   if (typeof result === 'number') {
     return data(result, {
       expectToBeNum
@@ -160,11 +205,21 @@ function TestCase(testname, func, data) {
       expectToBeArr
     });
   }
+  else if (typeof result === 'object') {
+    return data(result, {
+      expectToBeObj
+    })
+  }
+  else {
+    console.log("Unknown object")
+  }
 }
 module.exports = {
   TestCase,
   expectToBeNum,
   expectToBeText,
   expectToBeBool,
-  expectToBeArr
+  expectToBeArr,
+  expectToBeObj,
+  expectToBeErr
 }

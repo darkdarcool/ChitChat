@@ -6,5 +6,7 @@ module.exports = {
   expectToBeNum : e.expectToBeNum,
   expectToBeText : e.expectToBeText,
   expectToBeBool : e.expectToBeBool,
-  expectToBeArr : e.expectToBeArr
+  expectToBeArr : e.expectToBeArr,
+  expectToBeObj : e.expectToBeObj,
+  expectToBeErr : e.expectToBeErr
 }

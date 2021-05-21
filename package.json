@@ -1,6 +1,6 @@
 {
   "name": "chitchatsjs",
-  "version": "0.0.5",
+  "version": "0.0.8",
   "description": "Jest clone in JS with more strict types",
   "main": "index.js",
   "bin": "chitchatsjs",
@@ -19,7 +19,7 @@
   "bugs": {
     "url": "https://github.com/darkdarcool/ChitChat/issues"
   },
-  "homepage": "https://github.com/darkdarcool/ChitChat#readme",
+  "homepage": "http://chit-chat-docs.vercel.app/",
   "dependencies": {
     "colors": "^1.4.0"
   }

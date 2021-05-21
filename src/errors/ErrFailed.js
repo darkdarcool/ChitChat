@@ -9,7 +9,7 @@ colors.setTheme({
 var bold = '\033[1m';
 var grey = '\33[90m';
 var end  = "\x1b[0m";
-function boolFailed(testName, value, expected) {
+function errFailed(testName, value) {
   let type = typeof value;
   if (type == 'boolean') {
     type = 'bool';
@@ -17,11 +17,12 @@ function boolFailed(testName, value, expected) {
   else if (type == 'object') {
     type = 'obj'
   }
-  if (value == expected) {
-    console.log()
+  if (value instanceof Error || RangeError === true) {
+    type = "Error"
   }
-  console.log(bold + `❌  ${testName} failed.\nExpected bool:\n   ` .error + grey + expected + "\nbut received ".error + type.error + ":\n   ".error + grey + value + end);
+  console.log(bold + `❌  ${testName} failed.\nExpected Error, but received `.error + type.error + ":\n   ".error + grey + value + end);
+
 }
 module.exports = {
-  boolFailed
+  errFailed
 }

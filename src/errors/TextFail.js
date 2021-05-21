@@ -14,6 +14,12 @@ function textFailed(testName, value, expected) {
   if (type == 'boolean') {
     type = 'bool';
   }
+  else if (type == 'object') {
+    type = 'obj'
+  }
+  if (value == expected) {
+    console.log()
+  }
   console.log(bold + `❌  ${testName} failed.\nExpected string:\n   ` .error + grey + expected + "\nbut received " + type.error + ":\n   ".error + grey + value + end);
 }
 module.exports = {
