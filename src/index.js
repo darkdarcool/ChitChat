@@ -211,7 +211,7 @@ function TestCase(testname, func, data) {
     })
   }
   else {
-    console.log("Unknown object")
+    console.log("Unknown type. Please contact us if you want your type added")
   }
 }
 module.exports = {

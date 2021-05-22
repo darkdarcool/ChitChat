@@ -64,27 +64,26 @@ else if (process.argv[2] == 'example') {
   
   exec("git clone https://github.com/darkdarcool/ChitChatsjsExample", (error, stdout, stderr) => {
     if (error) {
-        console.log(`error: ${error.message}`);
+        console.log(`${error.message}`);
         return;
     }
     if (stderr) {
         console.log(`${stderr}`);
         return;
     }
-    console.log(`${stdout}`);
+    
   });
   sleep(3000)
   if (process.argv[3] != undefined) {
     exec(`mv ChitChatsjsExample ${process.argv[3]}`, (error, stdout, stderr) => {
       if (error) {
-        console.log(`error: ${error.message}`);
+        console.log(`${error.message}`);
         return;
       }
       if (stderr) {
         console.log(`${stderr}`);
         return;
       }
-      console.log(`${stdout}`);
     });
   }
 }
