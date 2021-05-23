@@ -115,4 +115,4 @@ Thanks for reading this. If you wanna use this, go ahead. This does not replace 
 
 ## KTHXBAI!!
 
-> ###### Pssst, if you wanna look at the source code, go [here](https://github.com/darkdarcool/chitchatjs)
+> ###### Pssst, if you wanna look at the source code, go [here](https://github.com/darkdarcool/ChitChat)
