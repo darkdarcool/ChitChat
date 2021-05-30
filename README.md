@@ -49,7 +49,7 @@ Now, lets create a folder called tests, and add a file called mytest.js in it. I
 ``` javascript
 var add = require('../add.js')
 TestCase('First Test', add(1, 5), () => {
-  return test.expectToBeNum(6)
+  return expectToBeNum(6)
 });
 ```
 
